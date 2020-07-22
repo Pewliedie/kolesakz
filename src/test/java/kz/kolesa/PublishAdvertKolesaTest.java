@@ -9,13 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 public class PublishAdvertKolesaTest extends ConfigurationClass {
 
     @Test
     public void publishAdTest(){
-        driver.manage().window().setSize(new Dimension(1920,1080));
+        driver.manage().window().maximize();
 
         driver.get("https://kolesa.kz/");
 
@@ -40,13 +38,9 @@ public class PublishAdvertKolesaTest extends ConfigurationClass {
 
         isAlertPresent();
 
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
         Assert.assertTrue(driver.findElement(By.className("fi-arrow-mini")).isDisplayed());
 
         driver.findElement(By.cssSelector(".btn")).click();
-
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         driver.findElement(By.xpath("//body//option[1]")).click();
 
@@ -84,11 +78,7 @@ public class PublishAdvertKolesaTest extends ConfigurationClass {
 
         driver.findElement(By.xpath("//li[@class='header-menu__list-item']//li[2]//a[1]")).click();
 
-        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-
         driver.findElement(By.xpath("//li[3]//a[1]//span")).click();
-
-        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
 
         Assert.assertTrue(driver.findElement(By.xpath("//div[@class='a-info-added']")).isDisplayed());
 
@@ -106,23 +96,17 @@ public class PublishAdvertKolesaTest extends ConfigurationClass {
 
         driver.findElement(By.xpath("//div[contains(text(),'Подать без продвижения')]")).click();
 
-        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-
         Assert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Объявление отправлено на проверку!')]")).isDisplayed());
 
         driver.findElement(By.xpath("//span[@class='header-menu-dropdown__toggler-label']")).click();
 
         driver.findElement(By.xpath("//li[@class='header-menu__list-item']//li[2]")).click();
 
-        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-
         Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Toyota Camry')]")).isDisplayed());
 
         driver.findElement(By.xpath("//span[@class='header-menu-dropdown__toggler-label']")).click();
 
         driver.findElement(By.xpath("//a[@class='header-menu-dropdown__menu-link logout-link']")).click();
-
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         Assert.assertTrue(driver.findElement(By.xpath("//span[contains(text(),'Личный кабинет')]")).isDisplayed());
     }

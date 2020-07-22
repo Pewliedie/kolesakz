@@ -13,7 +13,7 @@ public class AdvancedSearchKolesaTest extends ConfigurationClass {
 
     @Test
     public void advancedSearch() {
-        driver.manage().window().setSize(new Dimension(1920, 1080));
+        driver.manage().window().maximize();
 
         driver.get("https://kolesa.kz/");
 

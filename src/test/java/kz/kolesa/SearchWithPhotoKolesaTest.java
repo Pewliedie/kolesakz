@@ -1,21 +1,19 @@
 package kz.kolesa;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 
 public class SearchWithPhotoKolesaTest extends ConfigurationClass {
 
     @Test
     public void searchWithPhoto() {
-        driver.manage().window().setSize(new Dimension(1920, 1080));
+        driver.manage().window().maximize();
 
         driver.get("https://kolesa.kz/");
 
@@ -37,19 +35,13 @@ public class SearchWithPhotoKolesaTest extends ConfigurationClass {
 
         driver.findElement(By.xpath("//span[contains(text(),'BMW')]")).click();
 
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
         driver.findElement(By.xpath("//label[@for='_sys-hasphoto-checkbox-0']")).click();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("span.label.js__search-form-submit-value")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span.label.js__search-form-submit-value")));
 
         driver.findElement(By.cssSelector("span.label.js__search-form-submit-value")).click();
 
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
         Assert.assertTrue(driver.findElement(By.xpath("//div[@id='results']//picture")).isDisplayed());
-
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         driver.findElement(By.xpath("//a[contains(text(),'BMW X6 M')]")).click();
 
