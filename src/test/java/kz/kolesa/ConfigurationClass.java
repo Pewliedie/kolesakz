@@ -11,36 +11,34 @@ import org.testng.annotations.BeforeClass;
 import java.util.concurrent.TimeUnit;
 
 
-public class ConfigurationClass {
+public abstract class ConfigurationClass {
 
     protected WebDriver driver;
+    WebDriverWait wait;
 
-    @BeforeClass
+
+    @BeforeClass(groups = {"UiTest"})
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "A:\\Downloads\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, 15);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
     }
 
-    public boolean isAlertPresent()
-    {
-        WebDriverWait wait = new WebDriverWait(driver,10);
-        try
-        {
+    public boolean isAlertPresent() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        try {
             wait.until(ExpectedConditions.alertIsPresent());
             driver.switchTo().alert().dismiss();
             return true;
-        }
-        catch (NoAlertPresentException Ex)
-        {
+        } catch (NoAlertPresentException Ex) {
             return false;
         }
     }
 
-
-    @AfterClass
-    public void close(){
+    @AfterClass(groups = {"UiTest"})
+    public void close() {
         driver.quit();
     }
 }

@@ -2,23 +2,18 @@ package kz.kolesa;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PublishAdvertKolesaTest extends ConfigurationClass {
 
-    @Test
-    public void publishAdTest(){
+    @Test(groups = {"UiTest"})
+    public void publishAdTest() {
         driver.manage().window().maximize();
 
         driver.get("https://kolesa.kz/");
-
-
-        WebDriverWait wait = new WebDriverWait(driver, 15);
 
         WebElement header = driver.findElement(By.xpath("//div[@class='kolesa-top-header container']"));
 

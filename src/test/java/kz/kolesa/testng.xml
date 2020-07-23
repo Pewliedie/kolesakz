@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Kolesa">
+<suite name="KolesaUiTest">
     <test verbose="2" preserve-order="true"
           name="C:/Users/Wladyslaw/IdeaProjects/kolesakz/src/test/java/kolesakz/FirstTest.java">
+
+
+        <groups>
+            <run>
+                <include name = "UiTest" />
+            </run>
+        </groups>
+
         <classes>
             <class name="kz.kolesa.AdvancedSearchKolesaTest"/>
             <class name="kz.kolesa.PublishAdvertKolesaTest"/>

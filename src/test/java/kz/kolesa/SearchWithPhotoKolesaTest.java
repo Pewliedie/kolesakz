@@ -2,7 +2,6 @@ package kz.kolesa;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,13 +10,11 @@ import java.util.ArrayList;
 
 public class SearchWithPhotoKolesaTest extends ConfigurationClass {
 
-    @Test
+    @Test(groups = {"UiTest"}, alwaysRun = true)
     public void searchWithPhoto() {
         driver.manage().window().maximize();
 
         driver.get("https://kolesa.kz/");
-
-        WebDriverWait wait = new WebDriverWait(driver, 15);
 
         driver.findElement(By.xpath("//div[@class='menu-container container']//li[1]")).click();
 
@@ -34,6 +31,8 @@ public class SearchWithPhotoKolesaTest extends ConfigurationClass {
         driver.findElement(By.xpath("//span[7]//span")).click();
 
         driver.findElement(By.xpath("//span[contains(text(),'BMW')]")).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[@for='_sys-hasphoto-checkbox-0']")));
 
         driver.findElement(By.xpath("//label[@for='_sys-hasphoto-checkbox-0']")).click();
 
