@@ -5,16 +5,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-
-
 public class SearchWithPhotoKolesaTest extends ConfigurationClass {
 
     @Test(groups = {"UiTest"}, alwaysRun = true)
-    public void searchWithPhoto() {
-        driver.manage().window().maximize();
+    public void searchWithPhoto(){
 
-        driver.get("https://kolesa.kz/");
+        maximizeWindow();
+
+        initHomePage();
 
         driver.findElement(By.xpath("//div[@class='menu-container container']//li[1]")).click();
 
@@ -36,22 +34,20 @@ public class SearchWithPhotoKolesaTest extends ConfigurationClass {
 
         driver.findElement(By.xpath("//label[@for='_sys-hasphoto-checkbox-0']")).click();
 
+        System.out.println(driver.findElement(By.xpath("//label[@for='_sys-hasphoto-checkbox-0']")).isEnabled());
+
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span.label.js__search-form-submit-value")));
 
         driver.findElement(By.cssSelector("span.label.js__search-form-submit-value")).click();
 
-        Assert.assertTrue(driver.findElement(By.xpath("//div[@id='results']//picture")).isDisplayed());
-
         driver.findElement(By.xpath("//a[contains(text(),'BMW X6 M')]")).click();
 
-        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs2.get(1));
+        switchTab();
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.kl-button.kl-button.js__tutorial-close")));
 
         driver.findElement(By.cssSelector("button.kl-button.kl-button.js__tutorial-close")).click();
 
         Assert.assertTrue(driver.findElement(By.xpath("//button[@class='gallery__main js__gallery-main']//picture//img")).isDisplayed());
-
     }
 }

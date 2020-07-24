@@ -2,18 +2,22 @@ package kz.kolesa;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
 
 public class AdvancedSearchKolesaTest extends ConfigurationClass {
 
+    private static final String PRICE = "110_000_000";
+    private static final String BODY_TYPE = "седан";
+    private static final String DRIVE_UNIT = "полный привод";
+    private static final String ENGINE_VOLUME = "6.7 (бензин)";
+    private static final String LOCATION_OF_WHEEL = "слева";
+
     @Test(groups = {"UiTest"}, alwaysRun = true)
     public void advancedSearch() {
-        driver.manage().window().maximize();
 
-        driver.get("https://kolesa.kz/");
+        maximizeWindow();
+
+        initHomePage();
 
         driver.findElement(By.xpath("//div[@class='menu-container container']//li[1]")).click();
 
@@ -21,7 +25,7 @@ public class AdvancedSearchKolesaTest extends ConfigurationClass {
 
         driver.findElement(By.xpath("//li[1]//button")).click();
 
-        driver.findElement(By.id("price[from]")).sendKeys("110_000_000");
+        driver.findElement(By.id("price[from]")).sendKeys(PRICE);
 
         driver.findElement(By.cssSelector("button.set-optional span.label")).click();
 
@@ -59,17 +63,17 @@ public class AdvancedSearchKolesaTest extends ConfigurationClass {
 
         driver.findElement(By.xpath("//a[contains(text(),'Rolls-Royce Ghost')]")).click();
 
-        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs2.get(1));
+        switchTab();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.kl-button.kl-button.js__tutorial-close")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.kl-button.kl-button.js__tutorial-close")));
 
-        driver.findElement(By.cssSelector("button.kl-button.kl-button.js__tutorial-close"));
+        driver.findElement(By.cssSelector("button.kl-button.kl-button.js__tutorial-close")).click();
 
-        Assert.assertTrue(driver.findElement(By.xpath("//dl[8][contains(.,'полный привод')]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//dl[2][contains(.,'седан')]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//dd[contains(.,'6.7')]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//dl[6][contains(.,'слева')]")).isDisplayed());
-
+        //Assert parameters
+        softAssertion.assertEquals(driver.findElement(By.xpath("//dl[2]//dd")).getText(), BODY_TYPE, "parameter is not matching");
+        softAssertion.assertEquals(driver.findElement(By.xpath("//dl[3]//dd")).getText(), ENGINE_VOLUME, "parameter is not matching");
+        softAssertion.assertEquals(driver.findElement(By.xpath("//dl[6]/dd")).getText(), LOCATION_OF_WHEEL, "parameter is not matching");
+        softAssertion.assertEquals(driver.findElement(By.xpath("//dl[8]//dd")).getText(), DRIVE_UNIT, "parameter is not matching");
+        softAssertion.assertAll();
     }
 }
