@@ -1,20 +1,20 @@
-package kz.kolesa;
+package kz.kolesa.AdvancedSearch;
 
+import kz.kolesa.AbstractClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.annotations.Test;
 
-public class AdvancedSearchKolesaTest extends ConfigurationClass {
+public class HomePageAdvancedSearch extends AbstractClass {
 
     private static final String PRICE = "110_000_000";
-    private static final String BODY_TYPE = "седан";
-    private static final String DRIVE_UNIT = "полный привод";
-    private static final String ENGINE_VOLUME = "6.7 (бензин)";
-    private static final String LOCATION_OF_WHEEL = "слева";
 
-    @Test(groups = {"UiTest"}, alwaysRun = true)
-    public void advancedSearch() {
+    public HomePageAdvancedSearch(WebDriver driver) {
+        super(driver);
+    }
 
+
+    public void configureSearch() {
         driver.findElement(By.xpath("//div[@class='menu-container container']//li[1]")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[1]//button")));
@@ -54,22 +54,10 @@ public class AdvancedSearchKolesaTest extends ConfigurationClass {
         driver.findElement(By.cssSelector("#auto-car-volume\\[to\\]")).sendKeys("6.7");
 
         driver.findElement(By.cssSelector("button.primary-button")).click();
-
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(),'Rolls-Royce Ghost')]")));
 
         driver.findElement(By.xpath("//a[contains(text(),'Rolls-Royce Ghost')]")).click();
 
         switchTab();
-
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.kl-button.kl-button.js__tutorial-close")));
-
-        driver.findElement(By.cssSelector("button.kl-button.kl-button.js__tutorial-close")).click();
-
-        //Assert parameters
-        softAssertion.assertEquals(driver.findElement(By.xpath("//dl[2]//dd")).getText(), BODY_TYPE, "parameter is not matching");
-        softAssertion.assertEquals(driver.findElement(By.xpath("//dl[3]//dd")).getText(), ENGINE_VOLUME, "parameter is not matching");
-        softAssertion.assertEquals(driver.findElement(By.xpath("//dl[6]/dd")).getText(), LOCATION_OF_WHEEL, "parameter is not matching");
-        softAssertion.assertEquals(driver.findElement(By.xpath("//dl[8]//dd")).getText(), DRIVE_UNIT, "parameter is not matching");
-        softAssertion.assertAll();
     }
 }

@@ -1,15 +1,16 @@
-package kz.kolesa;
+package kz.kolesa.SearchWithPhoto;
 
+import kz.kolesa.AbstractClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
-public class SearchWithPhotoKolesaTest extends ConfigurationClass {
+public class BasePage extends AbstractClass {
+    public BasePage(WebDriver driver) {
+        super(driver);
+    }
 
-    @Test(groups = {"UiTest"}, alwaysRun = true)
-    public void searchWithPhoto(){
-
+    public void configureSearch(){
         driver.findElement(By.xpath("//div[@class='menu-container container']//li[1]")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[4]//button")));
@@ -39,11 +40,5 @@ public class SearchWithPhotoKolesaTest extends ConfigurationClass {
         driver.findElement(By.xpath("//a[contains(text(),'BMW X6 M')]")).click();
 
         switchTab();
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.kl-button.kl-button.js__tutorial-close")));
-
-        driver.findElement(By.cssSelector("button.kl-button.kl-button.js__tutorial-close")).click();
-
-        Assert.assertTrue(driver.findElement(By.xpath("//button[@class='gallery__main js__gallery-main']//picture//img")).isDisplayed());
     }
 }
