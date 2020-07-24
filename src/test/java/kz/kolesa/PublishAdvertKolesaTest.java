@@ -17,9 +17,6 @@ public class PublishAdvertKolesaTest extends ConfigurationClass {
 
     @Test(groups = {"UiTest"})
     public void publishAdTest() {
-        maximizeWindow();
-
-        initHomePage();
 
         WebElement header = driver.findElement(By.xpath("//div[@class='kolesa-top-header container']"));
 

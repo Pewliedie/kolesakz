@@ -15,10 +15,6 @@ public class AdvancedSearchKolesaTest extends ConfigurationClass {
     @Test(groups = {"UiTest"}, alwaysRun = true)
     public void advancedSearch() {
 
-        maximizeWindow();
-
-        initHomePage();
-
         driver.findElement(By.xpath("//div[@class='menu-container container']//li[1]")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[1]//button")));

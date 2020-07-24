@@ -10,10 +10,6 @@ public class SearchWithPhotoKolesaTest extends ConfigurationClass {
     @Test(groups = {"UiTest"}, alwaysRun = true)
     public void searchWithPhoto(){
 
-        maximizeWindow();
-
-        initHomePage();
-
         driver.findElement(By.xpath("//div[@class='menu-container container']//li[1]")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[4]//button")));
