@@ -47,7 +47,7 @@ public abstract class ConfigurationClass {
     }
 
     protected void switchTab(){
-        ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
     }
 
