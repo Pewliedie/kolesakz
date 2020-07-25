@@ -22,6 +22,7 @@ public class HomePage extends AbstractClass {
         driver.findElement(By.xpath("//span[@class='header-menu-dropdown__toggler-label']")).click();
         driver.findElement(By.xpath("//li[@class='header-menu__list-item']//li[2]//a[1]")).click();
         driver.findElement(By.xpath("//li[3]//a[1]//span")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='link a-action-link']")));
         //Assert that advert presented in draft
         softAssertion.assertEquals(driver.findElement(By.xpath("//a[@class='link a-action-link']")).getText(),
                 "Редактировать текст");
