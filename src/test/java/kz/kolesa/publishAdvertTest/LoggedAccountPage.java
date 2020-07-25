@@ -1,4 +1,4 @@
-package kz.kolesa.PublishAdvertTest;
+package kz.kolesa.publishAdvertTest;
 
 import kz.kolesa.AbstractClass;
 import org.openqa.selenium.By;

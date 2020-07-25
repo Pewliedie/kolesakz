@@ -1,4 +1,4 @@
-package kz.kolesa.AdvancedSearch;
+package kz.kolesa.advancedSearch;
 
 import kz.kolesa.AbstractClass;
 import org.openqa.selenium.By;

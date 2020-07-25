@@ -1,4 +1,4 @@
-package kz.kolesa.SearchWithPhoto;
+package kz.kolesa.searchWithPhoto;
 
 import kz.kolesa.AbstractClass;
 import org.openqa.selenium.By;

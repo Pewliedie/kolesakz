@@ -12,7 +12,7 @@
         </groups>
 
         <classes>
-            <class name="kz.kolesa.KolesaTest">
+            <class name="kz.kolesa.uiTest.KolesaTest">
                 <methods>
                     <include name="publishAdvertTest"/>
                     <include name="AdvancedSearchTest"/>

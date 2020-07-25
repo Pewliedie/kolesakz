@@ -1,10 +1,11 @@
-package kz.kolesa;
+package kz.kolesa.uiTest;
 
-import kz.kolesa.AdvancedSearch.HomePageAdvancedSearch;
-import kz.kolesa.AdvancedSearch.SearchResultPage;
-import kz.kolesa.PublishAdvertTest.*;
-import kz.kolesa.SearchWithPhoto.BasePage;
-import kz.kolesa.SearchWithPhoto.SearchingResultPage;
+import kz.kolesa.advancedSearch.HomePageAdvancedSearch;
+import kz.kolesa.advancedSearch.SearchResultPage;
+import kz.kolesa.ConfigProp;
+import kz.kolesa.publishAdvertTest.*;
+import kz.kolesa.searchWithPhoto.BasePage;
+import kz.kolesa.searchWithPhoto.SearchingResultPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
@@ -17,12 +18,12 @@ public class KolesaTest {
 
     @BeforeMethod(groups = {"UiTest"})
     protected void setUp() {
-        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", ConfigProp.getProperty("chromedriver"));
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get("https://kolesa.kz/");
+        driver.get(ConfigProp.getProperty("homepage"));
     }
 
 
