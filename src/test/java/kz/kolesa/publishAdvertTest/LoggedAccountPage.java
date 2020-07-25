@@ -11,7 +11,7 @@ public class LoggedAccountPage extends AbstractClass {
     }
 
     public void configureAd(){
-        driver.findElement(By.cssSelector(".btn")).click();
+        driver.findElement(By.xpath("//a[@class='btn btn-primary a-new-btn js__add-new']")).click();
     }
 
 
