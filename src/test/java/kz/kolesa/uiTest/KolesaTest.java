@@ -50,16 +50,37 @@ public class KolesaTest {
     @Test(groups = {"UiTest"})
     public void advancedSearchTest(){
         HomePageAdvancedSearch homePage = new HomePageAdvancedSearch(driver);
-        homePage.configureSearch();
+        homePage.openAutoSection();
+        homePage.chooseCity();
+        homePage.fillPrice();
+        homePage.openAdvancedSearch();
+        homePage.configureCountry();
+        homePage.configureCarStatus();
+        homePage.configureBodyType();
+        homePage.configureEngineType();
+        homePage.configureLocationWheel();
+        homePage.configureDriveUnit();
+        homePage.configureEngineVolume();
+        homePage.clickSearchButton();
+        homePage.openFoundResult();
         SearchResultPage searchResultPage = new SearchResultPage(driver);
+        searchResultPage.dismissHint();
         searchResultPage.AssertParameters();
     }
 
     @Test(groups = {"UiTest"})
     public void searchWithPhotoTest(){
         BasePage basePage = new BasePage(driver);
-        basePage.configureSearch();
+        basePage.openAutoSection();
+        basePage.chooseCity();
+        basePage.fillYearModel();
+        basePage.fillPrice();
+        basePage.configureMark();
+        basePage.withPhoto();
+        basePage.clickSearchButton();
+        basePage.openFoundResult();
         SearchingResultPage searchResultPage = new SearchingResultPage(driver);
+        searchResultPage.dismissHint();
         searchResultPage.checkPicture();
     }
 
