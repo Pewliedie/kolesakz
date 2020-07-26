@@ -39,7 +39,8 @@ public class KolesaTest {
         loggedAccountPage.configureAd();
 
         ConfigurationAdPage configurationAdPage = new ConfigurationAdPage(driver);
-        configurationAdPage.configure();
+        configurationAdPage.configureAdvert();
+        configurationAdPage.returnToMainPage();
 
         homePage.checkDraft();
         configurationAdPage.postAd();
